@@ -1,0 +1,13 @@
+<%= turbo_frame_tag dom_id(@answer, 'actions') do %>
+  <div>
+    <% if @answer.user_id == current_user&.id %>
+      <%= link_to "Edit", edit_question_answer_path(@answer.question, @answer) %>
+      <%= link_to "Delete", question_answer_path(@answer.question, @answer), "data-turbo-method": :delete %>
+    <% end %>
+
+    <% if @answer.question.user_id == current_user&.id %>
+      <% label = @answer.correct_answer ? "Remove Correct" : "Mark as Correct" %>
+      <%= link_to label, question_answer_correct_path(@answer.question, @answer) %>
+    <% end %>
+  </div>
+<% end %>

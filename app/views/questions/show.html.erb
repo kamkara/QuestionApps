@@ -1,0 +1,18 @@
+
+<%= turbo_stream_from @question %>
+
+<%= render @question %>
+
+<%= turbo_frame_tag :answers, src: question_answers_path(@question) %>
+<%= turbo_frame_tag :new_answer, src: new_question_answer_path(@question) %>
+
+
+<div>
+    <%= link_to "Edit", edit_question_path(@question) %>
+    |
+    <%= link_to "Destroy", question_path(@question),
+    "data-turbo-method": :delete,
+    "data-turbo-confirm": "Are you sure?" %>
+    |
+    <%= link_to "Back to questions", questions_path %>
+</div>
